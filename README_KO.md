@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 ```bash
 # 기본 설정으로 실행 (민감도: 5, 최소영역: 100, 경고음: 3초, 자동재활성화: 5분)
-python motion_detector.py
+python motion-guard.py
 
 # 선호하는 설정으로 실행
-python motion_detector.py -s 5 -m 100 -d 3 -r 300
+python motion-guard.py -s 5 -m 100 -d 3 -r 300
 ```
 
 ### 조작 방법
@@ -54,19 +54,19 @@ python motion_detector.py -s 5 -m 100 -d 3 -r 300
 
 ```bash
 # 작은 움직임 감지를 위한 높은 민감도
-python motion_detector.py -s 3
+python motion-guard.py -s 3
 
 # 오탐 감소를 위한 낮은 민감도
-python motion_detector.py -s 10 -m 200
+python motion-guard.py -s 10 -m 200
 
 # 경고음 지속 시간 연장
-python motion_detector.py -d 5
+python motion-guard.py -d 5
 
 # 10분 후 자동 재활성화
-python motion_detector.py -r 600
+python motion-guard.py -r 600
 
 # 모든 옵션 조합
-python motion_detector.py -s 5 -m 100 -d 3 -r 300
+python motion-guard.py -s 5 -m 100 -d 3 -r 300
 ```
 
 ## 작동 원리
@@ -177,7 +177,7 @@ python motion_detector.py -s 5 -m 100 -d 3 -r 300
 **추천 설정값 (광차단 방식):**
 ```bash
 # 밝기 변화에 민감하게 반응
-python motion_detector.py -s 5 -m 100 -d 3
+python motion-guard.py -s 5 -m 100 -d 3
 ```
 
 - 민감도 `-s 5~7`: 밝기 변화 감지에 적합
@@ -188,7 +188,7 @@ python motion_detector.py -s 5 -m 100 -d 3
 
 1. **프로그램 실행**
    ```bash
-   python motion_detector.py -s 5 -m 100
+   python motion-guard.py -s 5 -m 100
    ```
 
 2. **화면 확인**: 
@@ -253,21 +253,21 @@ python motion_detector.py -s 5 -m 100 -d 3
 ### 경고가 너무 자주 울림
 ```bash
 # 민감도 감소 (임계값 증가)
-python motion_detector.py -s 10
+python motion-guard.py -s 10
 # 또는
-python motion_detector.py -s 15
+python motion-guard.py -s 15
 ```
 
 ### 움직임을 놓침
 ```bash
 # 민감도 증가 (임계값 감소)
-python motion_detector.py -s 3
+python motion-guard.py -s 3
 ```
 
 ### 경고음이 너무 짧음
 ```bash
 # 경고음 지속 시간 연장
-python motion_detector.py -d 5
+python motion-guard.py -d 5
 ```
 
 ### 소리가 나지 않음

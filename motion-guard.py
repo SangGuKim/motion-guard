@@ -372,13 +372,13 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples / 예제:
-  python motion_detector.py                              # Default settings / 기본 설정
-  python motion_detector.py --lang ko                    # Korean language / 한국어
-  python motion_detector.py -s 10 -m 200                 # Sensitivity 10, min area 200
-  python motion_detector.py -d 5                         # 5 second alarm duration
-  python motion_detector.py -r 600                       # Auto-resume after 10 minutes
-  python motion_detector.py -s 5 -m 100 -d 3 -r 300      # All options combined
-  python motion_detector.py --lang ko -s 5 -m 100        # Korean with custom settings
+  python motion-guard.py                              # Default settings / 기본 설정
+  python motion-guard.py --lang ko                    # Korean language / 한국어
+  python motion-guard.py -s 10 -m 200                 # Sensitivity 10, min area 200
+  python motion-guard.py -d 5                         # 5 second alarm duration
+  python motion-guard.py -r 600                       # Auto-resume after 10 minutes
+  python motion-guard.py -s 5 -m 100 -d 3 -r 300      # All options combined
+  python motion-guard.py --lang ko -s 5 -m 100        # Korean with custom settings
   
 Controls / 조작:
   Spacebar: Toggle alarm on/off (auto-resumes after set time)

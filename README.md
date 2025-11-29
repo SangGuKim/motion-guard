@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 ```bash
 # Run with default settings (sensitivity: 5, min area: 100, alarm: 3s, auto-resume: 5min)
-python motion_detector.py
+python motion-guard.py
 
 # Run with your preferred settings
-python motion_detector.py -s 5 -m 100 -d 3 -r 300
+python motion-guard.py -s 5 -m 100 -d 3 -r 300
 ```
 
 ### Controls
@@ -54,19 +54,19 @@ python motion_detector.py -s 5 -m 100 -d 3 -r 300
 
 ```bash
 # Higher sensitivity for small movements
-python motion_detector.py -s 3
+python motion-guard.py -s 3
 
 # Less sensitive to reduce false alarms
-python motion_detector.py -s 10 -m 200
+python motion-guard.py -s 10 -m 200
 
 # Longer alarm duration
-python motion_detector.py -d 5
+python motion-guard.py -d 5
 
 # Auto-resume after 10 minutes
-python motion_detector.py -r 600
+python motion-guard.py -r 600
 
 # Combine all options
-python motion_detector.py -s 5 -m 100 -d 3 -r 300
+python motion-guard.py -s 5 -m 100 -d 3 -r 300
 ```
 
 ## How It Works
@@ -177,7 +177,7 @@ python motion_detector.py -s 5 -m 100 -d 3 -r 300
 **Recommended Settings (Light-Blocking Method):**
 ```bash
 # Sensitive to brightness changes
-python motion_detector.py -s 5 -m 100 -d 3
+python motion-guard.py -s 5 -m 100 -d 3
 ```
 
 - Sensitivity `-s 5~7`: Suitable for brightness change detection
@@ -188,7 +188,7 @@ python motion_detector.py -s 5 -m 100 -d 3
 
 1. **Run Program**
    ```bash
-   python motion_detector.py -s 5 -m 100
+   python motion-guard.py -s 5 -m 100
    ```
 
 2. **Check Display**: 
@@ -253,21 +253,21 @@ python motion_detector.py -s 5 -m 100 -d 3
 ### Alarm sounds too often
 ```bash
 # Reduce sensitivity (higher threshold)
-python motion_detector.py -s 10
+python motion-guard.py -s 10
 # or
-python motion_detector.py -s 15
+python motion-guard.py -s 15
 ```
 
 ### Missing movements
 ```bash
 # Increase sensitivity (lower threshold)
-python motion_detector.py -s 3
+python motion-guard.py -s 3
 ```
 
 ### Alarm too short
 ```bash
 # Extend alarm duration
-python motion_detector.py -d 5
+python motion-guard.py -d 5
 ```
 
 ### No sound
