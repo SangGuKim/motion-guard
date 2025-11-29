@@ -1,0 +1,10 @@
+# Python package list required for the motion-guard project execution
+
+# OpenCV library for webcam and image processing (as per README)
+opencv-python
+
+# NumPy library for numerical operations (as per README)
+numpy
+
+# Pygame library (as per README - likely used for sound alarms or graphical elements)
+pygame
