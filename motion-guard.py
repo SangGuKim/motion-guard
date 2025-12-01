@@ -89,13 +89,15 @@ except ImportError:
     PYGAME_AVAILABLE = False
 
 class MotionDetector:
-    def __init__(self, sensitivity=5, min_area=100, alarm_duration=3.0, auto_resume=300, lang=None):
+    def __init__(self, sensitivity=5, min_area=100, alarm_duration=3.0, auto_resume=300, lang=None, camera_index=0):
         self.cap = None
         self.prev_frame = None
         self.motion_detected = False
         self.sensitivity = sensitivity
         self.min_area = min_area
         self.running = False
+        
+        self.camera_index = camera_index 
         
         # Language settings - use system language if not specified
         if lang is None:
@@ -205,10 +207,10 @@ class MotionDetector:
     
     def initialize_camera(self):
         """Initialize camera"""
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(self.camera_index)
         
         if not self.cap.isOpened():
-            raise Exception(self.msg['camera_error'])
+            raise Exception(f"{self.msg['camera_error']} (Index: {self.camera_index})")
         
         # Camera settings for low-light environments
         self.cap.set(cv2.CAP_PROP_EXPOSURE, -6)  # Auto-adjust exposure
@@ -287,6 +289,7 @@ class MotionDetector:
             print(f"{self.msg['alarm_duration']}: {self.alarm_duration}{self.msg['seconds']}")
             print(f"{self.msg['auto_resume']}: {self.auto_resume_time}{self.msg['seconds']}")
             print(f"{self.msg['hysteresis']}: {self.motion_threshold_high}{self.msg['frames_to_trigger']}")
+            print(f"Camera Index / 카메라 인덱스: {self.camera_index}") 
             print("="*50 + "\n")
             
             while self.running:
@@ -372,8 +375,9 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples / 예제:
-  python motion-guard.py                              # Default settings / 기본 설정
-  python motion-guard.py --lang ko                    # Korean language / 한국어
+  python motion-guard.py                              # Default settings / 기본 설정 (Index 0 사용)
+  python motion-guard.py -i 1                         # Use camera index 1 / 카메라 인덱스 1 사용
+  python motion-guard.py --lang ko -i 2               # Korean language, camera index 2 / 한국어, 카메라 인덱스 2
   python motion-guard.py -s 10 -m 200                 # Sensitivity 10, min area 200
   python motion-guard.py -d 5                         # 5 second alarm duration
   python motion-guard.py -r 600                       # Auto-resume after 10 minutes
@@ -395,6 +399,8 @@ Controls / 조작:
                         help='Alarm duration in seconds (default: 3.0) / 경고음 지속 시간 초 (기본값: 3.0)')
     parser.add_argument('-r', '--auto-resume', type=int, default=300,
                         help='Auto re-enable time in seconds (default: 300 = 5 min) / 자동 재활성화 시간 초 (기본값: 300 = 5분)')
+    parser.add_argument('-i', '--camera-index', type=int, default=0,
+                        help='Camera device index (0, 1, 2, ... default: 0) / 카메라 장치 인덱스 (0, 1, 2, ... 기본값: 0)')
     parser.add_argument('--lang', type=str, default=None,
                         help='Language (default: system language, fallback to en) / 언어 (기본값: 시스템 언어, 없으면 en)')
     
@@ -405,6 +411,7 @@ Controls / 조작:
         min_area=args.min_area,
         alarm_duration=args.duration,
         auto_resume=args.auto_resume,
-        lang=args.lang
+        lang=args.lang,
+        camera_index=args.camera_index # 인스턴스 생성 시 전달
     )
     detector.run()
